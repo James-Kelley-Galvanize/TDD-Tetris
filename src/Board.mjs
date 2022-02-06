@@ -32,10 +32,13 @@ export class Board {
   tick() {
     // represents one unit of time passing
     // the test for this uses the toString method, too
+    // if there is a block in the bottom row, don't make a new row
+    if (this.rows[this.height - 1].some((character) => character !== ".")) {
+    }
     let newRow = Array(this.width).fill(`.`);
     let topRows = this.rows.filter((row, ind) => ind !== this.height - 1);
     this.rows = [newRow, ...topRows];
-    this.toggleDirtyFlag();
+    this.toggleDirtyFlag(); // this happens, regardless of if a row decrements.
   }
   hasFalling() {
     return this.rows.some((row) => row.some((character) => character !== "."));
