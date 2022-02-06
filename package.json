@@ -31,6 +31,6 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-coverage-report": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "autotest": "npm run test --watchAll"
+    "autotest": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
   }
 }

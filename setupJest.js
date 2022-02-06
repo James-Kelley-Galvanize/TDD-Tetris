@@ -1,4 +1,4 @@
-import { normalize } from "./__tests__/normalize.mjs";
+import { normalize } from "./src/util.mjs";
 import { printExpected, printReceived, matcherHint } from "jest-matcher-utils";
 
 expect.extend({
