@@ -10,9 +10,9 @@ export class Board {
     this.dirtyFlag = false;
   }
   toggleDirtyFlag() {
+    // utility to ensure the dirty flag can be set 'safely' - i.e. it will never not be a boolean
     this.dirtyFlag = !this.dirtyFlag;
   }
-
   toString() {
     return this.rows.map((row) => `${row.join(``)}\n`).join("");
   }
@@ -36,5 +36,8 @@ export class Board {
     let topRows = this.rows.filter((row, ind) => ind !== this.height - 1);
     this.rows = [newRow, ...topRows];
     this.toggleDirtyFlag();
+  }
+  hasFalling() {
+    return this.rows.some((row) => row.some((character) => character !== "."));
   }
 }
