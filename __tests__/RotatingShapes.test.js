@@ -32,7 +32,7 @@ describe("Rotating 3x3 shape", () => {
   });
 });
 
-xdescribe("Rotating 5x5 shape", () => {
+describe("Rotating 5x5 shape", () => {
   const shape = new RotatingShape(
     `ABCDE
      FGHIJ
@@ -41,7 +41,7 @@ xdescribe("Rotating 5x5 shape", () => {
      UVWXY`
   );
 
-  xit("initial orientation", () => {
+  it("initial orientation", () => {
     expect(shape.toString()).toEqualShape(
       `ABCDE
        FGHIJ
@@ -51,7 +51,7 @@ xdescribe("Rotating 5x5 shape", () => {
     );
   });
 
-  xit("can be rotated right/clockwise", () => {
+  it("can be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).toEqualShape(
       `UPKFA
        VQLGB
@@ -61,7 +61,7 @@ xdescribe("Rotating 5x5 shape", () => {
     );
   });
 
-  xit("can be rotated left/counter-clockwise", () => {
+  it("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).toEqualShape(
       `EJOTY
        DINSX
