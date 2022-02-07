@@ -1,13 +1,13 @@
 import { RotatingShape } from "../src/RotatingShape.mjs";
 
-xdescribe("Rotating 3x3 shape", () => {
+describe("Rotating 3x3 shape", () => {
   const shape = new RotatingShape(
     `ABC
      DEF
      GHI`
   );
 
-  xit("initial orientation", () => {
+  it("initial orientation", () => {
     expect(shape.toString()).toEqualShape(
       `ABC
        DEF
@@ -15,7 +15,7 @@ xdescribe("Rotating 3x3 shape", () => {
     );
   });
 
-  xit("can be rotated right/clockwise", () => {
+  it("can be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).toEqualShape(
       `GDA
        HEB
@@ -23,7 +23,7 @@ xdescribe("Rotating 3x3 shape", () => {
     );
   });
 
-  xit("can be rotated left/counter-clockwise", () => {
+  it("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).toEqualShape(
       `CFI
        BEH
