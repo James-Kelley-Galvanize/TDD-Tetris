@@ -7,7 +7,8 @@ export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.rows = makeMatrixTable(width, height);
+    this.blocks = [];
+    // this.rows =
     this.droppedDirtyFlag = false;
   }
   // ADDITIONAL STUFF THAT IS HELPFUL
@@ -25,6 +26,15 @@ export class Board {
     return `${row
       .map((item) => (item instanceof Block ? item.color : item))
       .join("")}\n`;
+  }
+
+  get rows() {
+    let table = makeMatrixTable(this.width, this.height);
+    this.blocks.forEach((block) => {
+      let { row, col } = block.location;
+      table[row][col] = block;
+    });
+    return table;
   }
 
   get nonBottomRows() {
@@ -52,8 +62,13 @@ export class Board {
 
     if (!this.droppedDirtyFlag) {
       let centerIndex = Math.floor(this.width / 2);
-      this.rows[0][centerIndex] = block;
+      // this.rows[0][centerIndex] = block;
       this.toggleDroppedDirtyFlag();
+      block.location = {
+        row: 0,
+        col: centerIndex,
+      };
+      this.blocks.push(block);
     } else {
       throw `already falling`;
     }
@@ -62,17 +77,29 @@ export class Board {
     // represents one unit of time passing
     // the test for this uses the toString method, too
     let bottomRowHasBlock = Board.rowHasBlock(this.bottomRow);
+
     this.bottomRow.forEach((item) => {
       // stop any blocks on the bottom row
       if (item instanceof Block) item.isFalling = false;
     });
 
-    if (!bottomRowHasBlock) {
-      // if there is a block in the bottom row, don't make a new row
-      let newRow = Array(this.width).fill(`.`);
-      let topRows = this.nonBottomRows;
-      this.rows = [newRow, ...topRows];
-    }
+    this.blocks.forEach((block, index, blockList) => {
+      if (block.isOnBottom) {
+        block.stop();
+      } else {
+        block.location.row++;
+        if (
+          blockList
+            .slice(0, index)
+            .some((block2) => block2.location.row === block.location.row)
+        ) {
+          block.location.row--;
+          block.stop();
+        } else if (block.location.row === this.height - 1) {
+          block.reachBottom();
+        }
+      }
+    });
 
     this.toggleDroppedDirtyFlag(); // this happens, regardless of if a row decrements.
   }
