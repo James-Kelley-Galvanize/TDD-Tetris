@@ -23,11 +23,23 @@ class I_Shape extends RotatingShape {
         .....`
     );
     this.vertical = vertical;
-    this.rotateLeft = this.rotate.bind(this);
-    this.rotateRight = this.rotate.bind(this);
+    this.rotateLeft = this.rotate;
+    this.rotateRight = this.rotate;
   }
   rotate() {
     return new I_Shape(!this.vertical);
+  }
+}
+class O_Shape extends RotatingShape {
+  constructor() {
+    super(`.OO
+    .OO
+    ...`);
+    this.rotateLeft = this.rotate;
+    this.rotateRight = this.rotate;
+  }
+  rotate() {
+    return this;
   }
 }
 
@@ -37,5 +49,8 @@ export const Tetromino = {
   },
   get I_SHAPE() {
     return new I_Shape();
+  },
+  get O_SHAPE() {
+    return new O_Shape();
   },
 };
