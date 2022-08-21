@@ -44,6 +44,7 @@ describe("Falling blocks", () => {
       expect(() => board.drop(new Block("Y"))).toThrow("already falling");
       const after = board.toString();
       expect(after).toEqual(before); // TODO: check conversion
+
     });
   });
 
@@ -79,8 +80,10 @@ describe("Falling blocks", () => {
          ...
          .X.`
       );
+
       // expect(board.hasFalling(), "the block should stop moving").to.beFalse;
       expect(board.hasFalling()).toBeFalse;
+
     });
   });
 
@@ -100,7 +103,9 @@ describe("Falling blocks", () => {
          .Y.
          .X.`
       );
+
       expect(board.hasFalling()).toBeTrue;
+
     });
 
     it("it stops when it hits the other block", () => {
@@ -111,8 +116,10 @@ describe("Falling blocks", () => {
          .Y.
          .X.`
       );
+
       // expect(board.hasFalling(), "the block should stop moving").to.be.false;
       expect(board.hasFalling()).toBeFalse;
+
     });
   });
 

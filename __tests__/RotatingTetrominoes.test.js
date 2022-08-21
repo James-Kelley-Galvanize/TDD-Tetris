@@ -41,7 +41,7 @@ xdescribe("The T shape", () => {
   });
 
   xit("has 4 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(4);
+    expect(distinctOrientations(shape).size).toEqual(4);
   });
 });
 
@@ -79,7 +79,7 @@ xdescribe("The I shape", () => {
   });
 
   xit("has 2 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(2);
+    expect(distinctOrientations(shape).size).toEqual(2);
   });
 });
 
@@ -111,6 +111,6 @@ xdescribe("The O shape", () => {
   });
 
   xit("has 1 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(1);
+    expect(distinctOrientations(shape).size).toEqual(1);
   });
 });
